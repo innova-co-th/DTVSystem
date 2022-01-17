@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+<br>
+<p>Date: <input type="text" id="datepicker"></p>
+<br>
+<button class="btn btn-dark" onclick="getDate()">Get datepicker</button>
+<br>
+<br>
+<br>
+<hr />
+<input type="checkbox" id="vehicle1" name="vehicle" value="Bike">
+<label for="vehicle1"> I have a bike</label>
+<br>
+<input type="checkbox" id="vehicle2" name="vehicle" value="Car">
+<label for="vehicle2"> I have a car</label>
+<br>
+<input type="checkbox" id="vehicle3" name="vehicle" value="Boat">
+<label for="vehicle3"> I have a boat</label>
+<br>
+<br>
+<button class="btn btn-dark" onclick="getCheckbox()">Get checkbox</button>
+<br>
+<br>
+<br>
+<hr />
+<div>
+    <label for="gender">Gender: </label>
+    <input type="radio" name="genderS" value="Male">Male
+    <input type="radio" name="genderS" value="Female">Female
+</div>
+<br>
+<button class="btn btn-dark" onclick="getRadio()">Get radio</button>
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            dateFormat: 'yy/mm/dd',
+        });
+    });
+
+    function getCheckbox() {
+        var favorite = [];
+        $.each($("input[name='vehicle']:checked"), function () {
+            favorite.push($(this).val());
+        });
+        alert("My favourite vehecle are: " + favorite.join(", "));
+    }
+
+    function getRadio() {
+        var radio = document.querySelector('input[name="genderS"]:checked').value;
+        alert("My gender is: " + radio);
+    }
+
+    function getDate() {
+        var date = document.getElementById('datepicker').value;
+        alert("Select date: " + date);
+    }
+</script>
