@@ -40,11 +40,7 @@ body {
     display: block;
     position: absolute;
 }
-/*
-li::after {
-    display: block;
-}
-*/
+
 .navbar .navbar-nav .nav-link:hover, .menuHome:hover {
     background-color: whitesmoke;
     color: #000000;
@@ -55,17 +51,27 @@ a span {
 }
 
 .navbarline {
-    height: 1px;
+    min-height: 1px !important;
 }
 
-
-.DDl {
-    background-color: black;
+.AddColor {
+    color: white !important;
 }
+    .AddColor:hover {
+        color: black !important;
+    }
 
 .dropdown-item {
     background-color: black;
 }
 
+.AddBgColor {
+    background-color: black !important;
+}
+
+.navbar {
+    border-radius: 0 !important;
+    padding-top:0 !important;
+}
 
 
