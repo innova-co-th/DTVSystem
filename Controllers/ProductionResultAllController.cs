@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+using System.Data;
 
 namespace DTVSystem.Controllers
 {
@@ -29,7 +30,41 @@ namespace DTVSystem.Controllers
             ViewBag.ProductionResultMode = ProductionResultMode;
             ViewBag.shift = Shift;
 
-            return View();
+                       
+
+            var ds = new DataSet();
+            var dt = new DataTable();
+            DataRow dr;
+
+            dt.Columns.Add(new DataColumn("Subject"));
+            dt.Columns.Add(new DataColumn("Line"));
+
+            dr = dt.NewRow();
+            dr["Subject"] = "Line(Assembly)";
+            dr["Line"] = "R1";
+            dt.Rows.Add(dr);
+
+            dr = dt.NewRow();
+            dr["Subject"] = "Plan";
+            dr["Line"] = "100";
+            dt.Rows.Add(dr);
+
+            dr = dt.NewRow();
+            dr["Subject"] = "Actual";
+            dr["Line"] = "100";
+            dt.Rows.Add(dr);
+
+            dr = dt.NewRow();
+            dr["Subject"] = "Diff";
+            dr["Line"] = "0";
+            dt.Rows.Add(dr);
+
+            ds.Tables.Add(dt);  
+     
+
+            return View(ds);
         }
+
+       
     }
 }
