@@ -1,37 +1,175 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DTVSystem</title>
+    <title>@ViewData["Title"] - WebApplicationCore1</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/DTVSystem.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplicationCore1.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+            <div class="container-fluid text-start">
+                <span>
+                    <img src="~/Image/Untitled.png" alt="Dev 2 System" height="25" />
+                    <b>Digital twin visualization system (DTV)</b>
+                </span>
+            </div>
+            <span class="col-5 text-right">
+                80 %
+                <img src="~/Image/humidity.png" alt="Dev 2 System" height="15" />
+                29 °C
+                <img src="~/Image/icons8-temperature-80.png" alt="Dev 2 System" height="15" />
+                <span class="" id='date-time'></span>
+            </span>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DTVSystem</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand mr-5 menuHome" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home" style="font-size:30px;color:red"></i></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <div class="collapse navbar-collapse" id="main_nav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown" id="myDropdown">
+                            <a class="nav-link dropdown-toggle mr-5" data-bs-toggle="dropdown"><i class="fab fa-delicious"></i> Monitoring  </a>
+                            <ul class="dropdown-menu">
+                                <li> <a class="dropdown-item" href="#"> Production Result (all assembly lines)</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#"> Staff attendance monitoring <span> &rtrif; </span> </a>
+                                    <ul class="dropdown-submenu dropdown-menu firstLevel">
+                                        <li>
+                                            <a class="dropdown-item" href="#">Submenu item 1 <span> &rtrif; </span> </a>
+                                            <ul class="dropdown-submenu dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Submenu item 2 <span> &rtrif; </span> </a>
+                                            <ul class="dropdown-submenu dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Submenu item 3 <span> &rtrif; </span> </a>
+                                            <ul class="dropdown-submenu dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"> Machine down time analysis (Real-time) <span> &rtrif; </span> </a>
+                                    <ul class="dropdown-submenu dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">Submenu item 1 <span> &rtrif; </span> </a>
+                                            <ul class="dropdown-submenu dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Submenu item 2 <span> &rtrif; </span> </a>
+                                            <ul class="dropdown-submenu dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Submenu item 3 <span> &rtrif; </span> </a>
+                                            <ul class="dropdown-submenu dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
+                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item dropdown" id="myDropdown2">
+                            <a class="nav-link dropdown-toggle mr-5" data-bs-toggle="dropdown"><i class="fab fa-delicious"></i>  History Analysis  </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#"> Production Leadtime <span> &rtrif; </span> </a>
+                                    <ul class="dropdown-submenu dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+                                        <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="dropdown-item" href="#"> KPI Summary by line </a></li>
+                                <li><a class="dropdown-item" href="#"> Cycle time (Mode) </a></li>
+                                <li><a class="dropdown-item" href="#"> Takt Balance </a></li>
+                                <li><a class="dropdown-item" href="#"> Loss time </a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item dropdown" id="myDropdown2">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fab fa-delicious"></i>  Master Data  </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"> C/T Master </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+                    <ul class="navbar-nav text-right">
+                        <li class="nav-item topnav-right dropdown" id="myDropdown2">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> User ID: xxxx <i class="fas fa-user"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-lg-end">
+                                <li><a class="dropdown-item" href="#"> User Name: [Firstname] [Lastname] </a></li>
+                                <li><button class="btn btn-primary">Logout</button></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+@*        <nav class="navbar navbar-expand-lg navbar-dark bg-danger navbarline">
+
+        </nav>*@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -41,12 +179,23 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - DTVSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - WebApplicationCore1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
+
+<script>
+    var timeDisplay = document.getElementById("date-time");
+
+    function refreshTime() {
+        var dateString = new Date().toLocaleString("th-TH");
+        timeDisplay.innerHTML = dateString;
+
+    }
+
+    setInterval(refreshTime, 1000);
+
+
+</script>

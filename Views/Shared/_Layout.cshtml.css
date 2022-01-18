@@ -1,11 +1,18 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+/*a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 }
+*/
+
+/*.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}*/
 
 a {
   color: #0077cc;
@@ -17,10 +24,8 @@ a {
   border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.navbar {
+    margin-bottom: -5px;
 }
 
 .border-top {
@@ -47,49 +52,16 @@ button.accept-policy {
   line-height: 60px;
 }
 
-.dropdown-menu li {
-    position: relative;
-}
 
+/*
 .dropdown-menu {
     background-color: black;
 }
 
 .dropdown-item {
+    background-color: black;
+}*/
+
+.dropdown-item {
     color: white;
-}
-
-.dropdown-menu .dropdown-submenu {
-    display: none;
-    position: absolute;
-    left: 100%;
-    top: -7px;
-}
-
-.dropdown-menu .dropdown-submenu-left {
-    right: 100%;
-    left: auto;
-}
-
-.dropdown-menu > li:hover > .dropdown-submenu {
-    display: block;
-    position: absolute;
-}
-/*
-li::after {
-    display: block;
-}
-*/
-.navbar .navbar-nav .nav-link:hover, .menuHome:hover {
-    background-color: whitesmoke;
-    color: #000000;
-
-}
-
-a span {
-    color: red;
-}
-
-.navbarline {
-    height: 1px;
 }

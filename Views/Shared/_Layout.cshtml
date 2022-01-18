@@ -11,7 +11,7 @@
     <title>@ViewData["Title"] - WebApplicationCore1</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebApplicationCore1.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DTVSystem.styles.css" asp-append-version="true" />
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,13 +25,13 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-white">
-            <div class="container-fluid text-start">
+            <div class="col-6 text-start">
                 <span>
                     <img src="~/Image/Untitled.png" alt="Dev 2 System" height="25" />
                     <b>Digital twin visualization system (DTV)</b>
                 </span>
             </div>
-            <span class="col-5 text-right">
+            <span class="col-6 text-end">
                 80 %
                 <img src="~/Image/humidity.png" alt="Dev 2 System" height="15" />
                 29 °C
@@ -47,15 +47,15 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="main_nav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav DDl">
                         <li class="nav-item dropdown" id="myDropdown">
                             <a class="nav-link dropdown-toggle mr-5" data-bs-toggle="dropdown"><i class="fab fa-delicious"></i> Monitoring  </a>
                             <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" href="#"> Production Result (all assembly lines)</a></li>
+                                <li> <a class="dropdown-item" asp-area="" asp-controller="ProductionResultAll" asp-action="ProductionResultAll"> Production Result (all assembly lines)</a></li>
                                 <li>
                                     <a class="dropdown-item" href="#"> Staff attendance monitoring <span> &rtrif; </span> </a>
-                                    <ul class="dropdown-submenu dropdown-menu firstLevel">
-                                        <li>
+                                    <ul class="dropdown-submenu dropdown-menu" id="DDLMonitoring">
+                                        @*<li>
                                             <a class="dropdown-item" href="#">Submenu item 1 <span> &rtrif; </span> </a>
                                             <ul class="dropdown-submenu dropdown-menu">
                                                 <li><a class="dropdown-item" href="#">Multi level 1</a></li>
@@ -87,13 +87,13 @@
                                                 <li><a class="dropdown-item" href="#">Multi level 5</a></li>
                                                 <li><a class="dropdown-item" href="#">Multi level 6</a></li>
                                             </ul>
-                                        </li>
+                                        </li>*@
                                     </ul>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#"> Machine down time analysis (Real-time) <span> &rtrif; </span> </a>
-                                    <ul class="dropdown-submenu dropdown-menu">
-                                        <li>
+                                    <ul class="dropdown-submenu dropdown-menu" id="DDLMachine">
+                                        @*<li>
                                             <a class="dropdown-item" href="#">Submenu item 1 <span> &rtrif; </span> </a>
                                             <ul class="dropdown-submenu dropdown-menu">
                                                 <li><a class="dropdown-item" href="#">Multi level 1</a></li>
@@ -125,7 +125,7 @@
                                                 <li><a class="dropdown-item" href="#">Multi level 5</a></li>
                                                 <li><a class="dropdown-item" href="#">Multi level 6</a></li>
                                             </ul>
-                                        </li>
+                                        </li>*@
                                     </ul>
                                 </li>
                             </ul>
@@ -187,6 +187,35 @@
 </html>
 
 <script>
+    $(document).ready(function () {
+            for(var i = 0; i<4;i++)
+            {
+                $('#DDLMonitoring').append('<li>'+
+                                    '<a class="dropdown-item" text-white href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
+                                    '<ul class="dropdown-submenu dropdown-menu">'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 1</a></li>'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 2</a></li>'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 3</a></li>'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 4</a></li>'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 5</a></li'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 6</a></li>'+
+                                    '</ul>'+
+                                    '</li>');
+
+                $('#DDLMachine').append('<li>'+
+                                    '<a class="dropdown-item" text-white href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
+                                    '<ul class="dropdown-submenu dropdown-menu">'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 1</a></li>'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 2</a></li>'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 3</a></li>'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 4</a></li>'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 5</a></li'+
+                                    '<li><a class="dropdown-item" href="#">Multi level 6</a></li>'+
+                                    '</ul>'+
+                                    '</li>');
+            }
+            
+    });
     var timeDisplay = document.getElementById("date-time");
 
     function refreshTime() {

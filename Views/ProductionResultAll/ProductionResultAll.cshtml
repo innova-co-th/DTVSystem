@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "ProductionResultAll";
+}
+
+@*<h1>Production Result (All assembly lines)</h1>*@
+
+<h1></h1>
+
+
+    <form method="post" enctype="multipart/form-data">      
+      
+        <label>Production Result (All assembly lines) : </label>
+        <label>Mode</label>
+
+       
+        <select name="products" class="form-control" asp-items="@ViewBag.ProductionResultMode"></select>
+
+         <label>Date</label>
+             
+    
+    <div id="divData"></div>  
+    <div class="form-group">
+    <label  class="control-label">From</label>
+    <input id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("dd/mm/yyyy")" />
+    <span  class="text-danger"></span>
+    </div>
+
+    <div id="divData"></div>  
+    <div class="form-group">
+    <label  class="control-label">To</label>
+    <input id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("dd/mm/yyyy")" />
+    <span  class="text-danger"></span>
+    </div>
+
+     <label>Shift</label>
+
+       
+        <select name="Shift" class="form-control" asp-items="@ViewBag.Shift"></select>
+@*
+      <input type="submit" asp-action="Search" value="Search" />
+      <input type="submit" asp-action="Clear" value="Clear" />*@
+
+      @*  <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary form-control" OnClick="LinkButton1_Click">
+        <i class="glyphicon glyphicon-search"></i> SEARCH</asp:LinkButton>
+        
+        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-primary form-control" OnClick="LinkButton2_Click">
+        <i class="glyphicon glyphicon-remove"></i> CLEAR</asp:LinkButton>*@
+
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-search"></span> Search 
+        </button>
+
+       
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-remove"></span> Clear 
+        </button>
+    
+
+     
+    </form>  
+
+    @section Scripts
+{
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+}
+
+
+
+
