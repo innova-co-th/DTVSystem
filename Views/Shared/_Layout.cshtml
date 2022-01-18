@@ -17,9 +17,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -47,85 +47,19 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="main_nav">
-                    <ul class="navbar-nav DDl">
+                    <ul class="navbar-nav">
                         <li class="nav-item dropdown" id="myDropdown">
                             <a class="nav-link dropdown-toggle mr-5" data-bs-toggle="dropdown"><i class="fab fa-delicious"></i> Monitoring  </a>
                             <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="ProductionResultAll" asp-action="ProductionResultAll"> Production Result (all assembly lines)</a></li>
+                                <li> <a class="dropdown-item AddColor" asp-area="" asp-controller="ProductionResultAll" asp-action="ProductionResultAll"> Production Result (all assembly lines)</a></li>
                                 <li>
                                     <a class="dropdown-item" href="#"> Staff attendance monitoring <span> &rtrif; </span> </a>
-                                    <ul class="dropdown-submenu dropdown-menu" id="DDLMonitoring">
-                                        @*<li>
-                                            <a class="dropdown-item" href="#">Submenu item 1 <span> &rtrif; </span> </a>
-                                            <ul class="dropdown-submenu dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Submenu item 2 <span> &rtrif; </span> </a>
-                                            <ul class="dropdown-submenu dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Submenu item 3 <span> &rtrif; </span> </a>
-                                            <ul class="dropdown-submenu dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
-                                            </ul>
-                                        </li>*@
+                                    <ul class="dropdown-submenu dropdown-menu" id="DDLStaff">
                                     </ul>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#"> Machine down time analysis (Real-time) <span> &rtrif; </span> </a>
                                     <ul class="dropdown-submenu dropdown-menu" id="DDLMachine">
-                                        @*<li>
-                                            <a class="dropdown-item" href="#">Submenu item 1 <span> &rtrif; </span> </a>
-                                            <ul class="dropdown-submenu dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Submenu item 2 <span> &rtrif; </span> </a>
-                                            <ul class="dropdown-submenu dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Submenu item 3 <span> &rtrif; </span> </a>
-                                            <ul class="dropdown-submenu dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 3</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 4</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 5</a></li>
-                                                <li><a class="dropdown-item" href="#">Multi level 6</a></li>
-                                            </ul>
-                                        </li>*@
                                     </ul>
                                 </li>
                             </ul>
@@ -167,9 +101,9 @@
                 </div>
             </div>
         </nav>
-@*        <nav class="navbar navbar-expand-lg navbar-dark bg-danger navbarline">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-danger navbarline">
 
-        </nav>*@
+            </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -190,31 +124,30 @@
     $(document).ready(function () {
             for(var i = 0; i<4;i++)
             {
-                $('#DDLMonitoring').append('<li>'+
-                                    '<a class="dropdown-item" text-white href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
-                                    '<ul class="dropdown-submenu dropdown-menu">'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 1</a></li>'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 2</a></li>'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 3</a></li>'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 4</a></li>'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 5</a></li'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 6</a></li>'+
+                $('#DDLStaff').append('<li>'+
+                                    '<a class="dropdown-item AddColor" href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
+                                    '<ul class="dropdown-submenu AddBgColor dropdown-menu" id="detailFactoryStaff'+i+'">'+
                                     '</ul>'+
                                     '</li>');
 
                 $('#DDLMachine').append('<li>'+
-                                    '<a class="dropdown-item" text-white href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
-                                    '<ul class="dropdown-submenu dropdown-menu">'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 1</a></li>'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 2</a></li>'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 3</a></li>'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 4</a></li>'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 5</a></li'+
-                                    '<li><a class="dropdown-item" href="#">Multi level 6</a></li>'+
+                                    '<a class="dropdown-item AddColor" href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
+                                    '<ul class="dropdown-submenu AddBgColor dropdown-menu" id="detailFactoryMachine'+i+'">'+
                                     '</ul>'+
                                     '</li>');
             }
-            
+            for(var n = 0; n<4;n++)
+            {
+                var idFacStaff = "detailFactoryStaff"+n
+                var idFacMac = "detailFactoryMachine"+n
+                for(var j = 0; j < 6 ; j++)
+                {
+                    $('#'+idFacStaff).append('<li><a class="dropdown-item AddColor"  href="/Home/Privacy">Detail_'+j+'</a></li>');
+                    $('#'+idFacMac).append('<li><a class="dropdown-item AddColor" asp-area="" asp-controller="Home" asp-action="Privacy">Detail_'+j+'</a></li>');
+                }
+            }
+
+
     });
     var timeDisplay = document.getElementById("date-time");
 
