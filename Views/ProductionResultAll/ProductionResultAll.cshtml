@@ -1,4 +1,6 @@
-﻿
+﻿@using System.Data
+@model DataSet
+
 @{
     ViewData["Title"] = "ProductionResultAll";
 }
@@ -8,7 +10,9 @@
 <h1></h1>
 
 
-    <form method="post" enctype="multipart/form-data">      
+    <form method="post" enctype="multipart/form-data">    
+        
+
       
         <label>Production Result (All assembly lines) : </label>
         <label>Mode</label>
@@ -22,14 +26,14 @@
     <div id="divData"></div>  
     <div class="form-group">
     <label  class="control-label">From</label>
-    <input id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("dd/mm/yyyy")" />
+    <input id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
     <span  class="text-danger"></span>
     </div>
 
     <div id="divData"></div>  
     <div class="form-group">
     <label  class="control-label">To</label>
-    <input id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("dd/mm/yyyy")" />
+    <input id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
     <span  class="text-danger"></span>
     </div>
 
@@ -53,10 +57,24 @@
 
        
         <button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-remove"></span> Clear-test2 
+          <span class="glyphicon glyphicon-remove"></span> Clear
         </button>
     
+        <div id="UserList"></div>
 
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Factory</th>
+            <th>Factory1</th>           
+        </tr>
+        @foreach (DataRow row in Model.Tables[0].Rows)
+        {
+            <tr>
+                <td>@row["Subject"]</td>
+                <td>@row["Line"]</td>                
+            </tr>
+        }
+    </table>
      
     </form>  
 
@@ -70,6 +88,8 @@
             $("#datepicker").datepicker();
         });
     </script>
+
+
 }
 
 
