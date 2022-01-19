@@ -1,0 +1,185 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    #DDlMachineG[disabled] {
+        background-color: lightgrey;
+    }
+
+    .reqDDL{
+        border-color : red;
+    }
+
+    .center {
+        text-align: center;
+        font-size:60px;
+        color:white;
+        margin-top: 10%;
+        margin-left: 35%;
+    }
+</style>
+
+<div class="">
+    <div class="panel" id="fieldSearch" style="background-color:lightgray;">
+        <div class="panel-body form-horizontal">
+            <div class="row">
+                <label class="col-md-3">Machine Downtime Analysis Realtime</label>
+                <div class="col-md-2">
+                    <label class="me-4">Type</label>
+                    <input type="radio" class="me-1" name="machineT" value="1" checked>Machine &nbsp;
+                    <input type="radio" class="me-1" name="machineT" value="2">Machine group
+                </div>
+                <div class="row col-md-2">
+                    <label style="width:30%">Factory<span class="text-danger" id="spanreqDDlFactory">*</span></label>
+                    <select id="DDlFactory" class="form-control" style="width:60%" asp-items="@ViewBag.DDlFactory">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="row col-md-2">
+                    <label style="width:30%">Line<span class="text-danger" id="spanreqDDlLine">*</span></label>
+                    <select id="DDlLine" class="form-control" style="width:60%" asp-items="@ViewBag.DDlLine">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="row col-md-2">
+                    <label style="width:30%">Process<span class="text-danger" id="spanreqDDlProcess">*</span></label>
+                    <select id="DDlProcess" class="form-control" style="width:60%" asp-items="@ViewBag.DDlProcess">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="offset-5 mt-2">
+                <div class="row col-md-4">
+                    <label style="width:40%">Machine Group<span class="text-danger" id="spanreqDDlMachineG">*</span></label>
+                    <select id="DDlMachineG" class="form-control" style="width:55%" asp-items="@ViewBag.DDlMachineG">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="row col-md-4">
+                    <label style="width:30%">Machine</label>
+                    <select id="ddlMachine" class="form-control" style="width:55%" asp-items="@ViewBag.ddlMachine">
+                        <option></option>
+                    </select>
+                </div>
+                <button class="btn btn-light col-md-1 me-2" onclick="ClickSearch()"><i class="fas fa-search" style="color:green;"></i> Search</button>
+                <button class="btn btn-light col-md-1" onclick="ClickClear()"><i class="fas fa-times" style="color:red;"></i> Clear</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <label class="center" id="ErrMessage" ></label>
+</div>
+
+<script>
+    $(document).ready(function () {
+        document.getElementById("spanreqDDlFactory").classList.remove("hide");
+                document.getElementById("spanreqDDlLine").classList.remove("hide");
+                document.getElementById("spanreqDDlProcess").classList.remove("hide");
+                document.getElementById("spanreqDDlMachineG").classList.add("hide");
+                document.getElementById("DDlMachineG").disabled = true;
+
+        $('input[type=radio][name=machineT]').change(function() {
+            if (this.value == "1")
+            {
+                document.getElementById("spanreqDDlFactory").classList.remove("hide");
+                document.getElementById("spanreqDDlLine").classList.remove("hide");
+                document.getElementById("spanreqDDlProcess").classList.remove("hide");
+                document.getElementById("spanreqDDlMachineG").classList.add("hide");
+                document.getElementById("DDlMachineG").disabled = true;
+
+            }
+            else if (this.value == "2")
+            {
+                document.getElementById("spanreqDDlFactory").classList.add("hide");
+                document.getElementById("spanreqDDlLine").classList.add("hide");
+                document.getElementById("spanreqDDlProcess").classList.add("hide");
+                document.getElementById("spanreqDDlMachineG").classList.remove("hide");
+                document.getElementById("DDlMachineG").disabled = false;
+            }
+        });
+    });
+
+    function ClickClear(){
+        location.href = '@Url.Action("pageInitial", "MachineDownTimeAnalysis")'
+    }
+
+    function ClickSearch(){
+        counterr = 0
+        var val_radio = document.querySelector('input[name="machineT"]:checked').value;
+        if(val_radio == "1")
+        {
+            if($("#DDlFactory").val() == "")
+            {
+                document.getElementById("DDlFactory").style.borderWidth = "3px"
+                document.getElementById("DDlFactory").style.borderColor = "red"
+                counterr++
+            }
+            else
+            {
+                document.getElementById("DDlFactory").style.borderWidth = ""
+                document.getElementById("DDlFactory").style.borderColor = ""
+            }
+            if($("#DDlLine").val() == "")
+            {
+                document.getElementById("DDlLine").style.borderWidth = "3px"
+                document.getElementById("DDlLine").style.borderColor = "red"
+                counterr++
+            }
+            else
+            {
+                document.getElementById("DDlLine").style.borderWidth = ""
+                document.getElementById("DDlLine").style.borderColor = ""
+            }
+            if($("#DDlProcess").val() == "")
+            {
+                document.getElementById("DDlProcess").style.borderWidth = "3px"
+                document.getElementById("DDlProcess").style.borderColor = "red"
+                counterr++
+            }
+            else
+            {
+                document.getElementById("DDlProcess").style.borderWidth = ""
+                document.getElementById("DDlProcess").style.borderColor = ""
+            }
+        }
+        else
+        {
+            if($("#DDlMachineG").val() == "")
+            {
+                document.getElementById("DDlMachineG").style.borderWidth = "3px"
+                document.getElementById("DDlMachineG").style.borderColor = "red"
+                counterr++
+            }
+            else
+            {
+                document.getElementById("DDlMachineG").style.borderWidth = ""
+                document.getElementById("DDlMachineG").style.borderColor = ""
+            }
+
+        }
+
+        if(counterr == 0)
+        {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("getSearch", "MachineDownTimeAnalysis")',
+                data: {
+                    id: $("#EmpPosReqId").val(),
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (!data.status) {
+                        $("#ErrMessage").html("Data does not exist")
+                        return;
+                    }
+                    document.getElementById("ErrMessage").classList.remove("center");
+                }
+            });
+        }
+
+    }
+</script>
