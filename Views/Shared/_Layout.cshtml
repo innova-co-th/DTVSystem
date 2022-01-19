@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
 
-<body>
+<body style="background-color:black;">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-white">
             <div class="col-6 text-start">
@@ -105,7 +105,8 @@
 
             </nav>
     </header>
-    <div class="container">
+    @*<div class="container" >*@
+    <div class="" >
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -144,7 +145,7 @@
                 for(var j = 0; j < 6 ; j++)
                 {
                     $('#'+idFacStaff).append('<li><a class="dropdown-item AddColor"  href="/Home/Privacy">Detail_'+j+'</a></li>');
-                    $('#'+idFacMac).append('<li><a class="dropdown-item AddColor" asp-area="" asp-controller="Home" asp-action="Privacy">Detail_'+j+'</a></li>');
+                    $('#'+idFacMac).append('<li><a class="dropdown-item AddColor" href="/MachineDownTimeAnalysis/pageInitial">Detail_'+j+'</a></li>');
                 }
             }
 
