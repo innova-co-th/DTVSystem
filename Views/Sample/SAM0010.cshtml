@@ -1,0 +1,97 @@
+﻿@model DTVSystem.ViewModels.SAM0010ViewModel
+
+@{
+    ViewData["Title"] = "SAM0010";
+}
+
+<hi>Index</hi>
+
+<p>
+    
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.CompanyModel.Company_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.CompanyModel.Company_name)
+            </th>
+            <th>
+                <a asp-action="Create" class="btn btn-success text-white"><i class="fas fa-random"></i>New Company</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CompanyModelList)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Company_ID)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Company_name)
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        
+    });
+
+    function GetMessage() {
+        $.get("/Home/GetMessage", function (data) {
+            $("p").html(data);
+        });
+    }
+    
+    $("#btnSave").click(function () {
+        $.ajax({
+            url: "@Url.Action("IsDistributedOrSendedEmailBeforeSave", "Sample")",
+            type: 'POST',
+            data: {
+                paramCustomerCode: $("#ddlCustomer").val(),
+                paramModelCode: $("#ddlModel").val(),
+                paramPID: $("#PID").val(),
+                paramSuffixM: suffixM
+            },
+            success: function (result) {
+                if (result.status == true) {
+
+                    $('#modalConfirm').modal('show');
+                    $('#confirmMessage').text("Do you want to continue?");
+                    $('#modal-btn-ok').click(function () {
+                        $("#modal-btn-ok").unbind("click");
+                        $("#modal-btn-cancel").unbind("click");
+                        $('#modalConfirm').modal('hide');
+                        $('#modalConfirm').removeClass('delete-modal');
+
+                        EditPart(strChangeSuffix);
+                    });
+                    $('#modal-btn-cancel').click(function () {
+                        $("#modal-btn-ok").unbind("click");
+                        $("#modal-btn-cancel").unbind("click");
+                        $('#modalConfirm').removeClass('delete-modal');
+                    });
+                }
+                else {
+                    EditPart(strChangeSuffix);
+                }
+            },
+            failure: function (errMsg) {
+                formUnload();
+                $('#modal-error').modal('show');
+                $('#modal-error .modal-title').text(errMsg);
+            }, error: function (request, status, error) {
+                formUnload();
+                $('#modal-error').modal('show');
+                $('#modal-error .modal-title').text(error);
+            }
+        });
+    });
+</script>

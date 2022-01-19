@@ -1,0 +1,149 @@
+﻿@model DTVSystem.ViewModels.SAM0001ViewModel
+
+@{
+    ViewData["Title"] = "SAM0001";
+}
+
+
+<body>
+    <div class="text-left">
+        <h1 class="display-5">@Model.Title</h1>
+    </div>
+     <div class="container mt-3">
+            <p class="font-weight-bold">Basic example</p>
+            <select id="ddllist" class="mdb-select md-form " searchable="Search here..">
+                <option value="" disabled selected>Choose your country</option>
+                <option value="1">USA</option>
+                <option value="2">Germany</option>
+                <option value="3">France</option>
+                <option value="4">Poland</option>
+                <option value="5">Japan</option>
+            </select>
+            <br />
+            <br />
+            <hr />
+            <div class="row">
+                <form class="col-md-4">
+                    <label>Select</label>
+                    <select class="form-control select2" id="select2">
+                        <option value="" disabled selected>Select</option>
+                        <option value="1">Car</option>
+                        <option value="2">Bike</option>
+                        <option value="3">Scooter</option>
+                        <option value="4">Cycle</option>
+                        <option value="5">Horse</option>
+                    </select>
+                </form>
+            </div>
+            <br />
+            <br />
+            <button class="btn btn-success" onclick="ChkValue()">GetValue</button>
+            <input type="button" onclick="GetMessage()" value="Get Message"/>
+<p></p>
+
+                <div class="form-group">
+
+                    @*===== Customer =====*@
+                    <label class="col-md-1 control-label">@Model.Title <span class="Red-Star" id="CustomerRedStar">*</span></label>
+                    <div class="col-md-5">
+                        <select class="form-control" name="ddlCustomer" id="ddlCustomer" onchange="CustomerSelected()" >
+                            @{
+                                <option value=""></option>
+                                foreach (var item in Model.CustomerListItem)
+                                {
+                                    if (item.Selected)
+                                    {
+                                        <option value="@item.Value" selected>@item.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <span id="validateCustomer" class="customervalidate" style="color:red; display:none"></span>
+                    </div>
+
+                    @*===== Part Type =====*@
+                
+                    <label class="col-md-1 control-label">@Model.Title </label>
+                    <div class="col-md-2">
+                        <select class="form-control" name="ddlPartType" id="ddlPartType" >
+                            @{
+                                foreach (var item in Model.CustomerListItem)
+                                {
+                                    if (item.Selected)
+                                    {
+                                        <option value="@item.Value" selected>@item.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-2" style="max-width: 350px">
+                        <input type="checkbox" style="margin-right:5px" id="status_flg"  /><label class="control-label group8-toplev-lab">@Model.Title </label>
+                    </div>
+
+                    @*===== Empty =====*@
+                    <div class="col-md-1">
+
+                    </div>
+
+                @*===== footer =====*@
+                <div class="panel-footer form-horizontal" style="margin-top:50px">
+                    <div class="form-group">
+                        <div class="text-center " style="margin-top:30px">
+                            @{
+                                if (Model.Mode == "Add")
+                                {
+
+                                    <button type="button" class="btn btn-primary" id="btnSave">
+                                        Save
+                                    </button>
+                                    <button type="button" class="btn btn-danger" id="btnDelete" disabled>
+                                        Delete
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" id="btnCancel">
+                                        Cancel
+                                    </button>
+                                }
+                                if (Model.Mode == "Edit")
+                                {
+
+                                    <button type="button" class="btn btn-primary" id="btnSave">
+                                        Save
+                                    </button>
+                                    <button type="button" class="btn btn-danger" id="btnDelete" >
+                                        Delete
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" id="btnCancel">
+                                       Cancel
+                                    </button>
+                                }
+                                
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        <span class="col-md-4 text-timestamp">
+                            @Model.CreateInfo
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        <span class="col-md-5 text-timestamp">
+                            @Model.UpdateInfo
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>

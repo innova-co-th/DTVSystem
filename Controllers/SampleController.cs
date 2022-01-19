@@ -1,11 +1,86 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using System.Data;
+using DTVSystem.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DTVSystem.Controllers
 {
     public class SampleController : Controller
     {
+        public IActionResult SAM0001()
+        {
+            SAM0001ViewModel model = new SAM0001ViewModel();
+            model.Title = "SAM0001 : Component";
+
+            model.Mode = "Add";
+            model.CreateInfo = "Create Data.";
+            model.UpdateInfo = "Update Data.";
+
+            List<SelectListItem> lstDdlCustomer = new List<SelectListItem>();
+            SelectListItem item = new SelectListItem
+            {
+                Text = "Text1",
+                Value = "A001",
+            };
+            lstDdlCustomer.Add(item);
+            model.CustomerListItem = lstDdlCustomer;
+
+            return View(model);
+        }
+
+        public IActionResult SAM0010()
+        {
+            SAM0010ViewModel model = new SAM0010ViewModel();
+            model.Title = "SAM0010 : Mas_Company";
+
+            model.Mode = "Add";
+            model.CreateInfo = "Create Data.";
+            model.UpdateInfo = "Update Data.";
+
+            List<SelectListItem> lstDdlCustomer = new List<SelectListItem>();
+            SelectListItem item = new SelectListItem
+            {
+                Text = "Text1",
+                Value = "A001",
+            };
+            lstDdlCustomer.Add(item);
+            model.CompanyModel = new Models.CompanyModel();
+            model.CompanyModel.Company_ID = 1;
+            model.CompanyModel.Company_name = "DIT";
+
+            model.CompanyModelList = new List<Models.CompanyModel>();
+            model.CompanyModelList.Add(model.CompanyModel);
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        public IActionResult SAM0011()
+        {
+            SAM0010ViewModel model = new SAM0010ViewModel();
+            model.Title = "SAM0010";
+
+            model.Mode = "Add";
+            model.CreateInfo = "Create Data.";
+            model.UpdateInfo = "Update Data.";
+
+            List<SelectListItem> lstDdlCustomer = new List<SelectListItem>();
+            SelectListItem item = new SelectListItem
+            {
+                Text = "Text1",
+                Value = "A001",
+            };
+            lstDdlCustomer.Add(item);
+            //model.CustomerListItem = lstDdlCustomer;
+
+            return View(model);
+        }
+
         public IActionResult PatternList()
         {
             #region Pattern1
