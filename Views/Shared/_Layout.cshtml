@@ -83,7 +83,7 @@
                         <li class="nav-item dropdown" id="myDropdown2">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fab fa-delicious"></i>  Master Data  </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"> C/T Master </a></li>
+                                <li><a class="dropdown-item AddColor" asp-area="" asp-controller="CTMaster" asp-action="MAS0010"> C/T Master </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -146,7 +146,7 @@
                 for(var j = 0; j < 6 ; j++)
                 {
                     $('#'+idFacStaff).append('<li><a class="dropdown-item AddColor"  href="/Home/Privacy">Detail_'+j+'</a></li>');
-                    $('#'+idFacMac).append('<li><a class="dropdown-item AddColor" href="/MachineDownTimeAnalysis/pageInitial">Detail_'+j+'</a></li>');
+                    $('#'+idFacMac).append('<li><a class="dropdown-item AddColor" href="/MachineDownTimeAnalysis/MCD0010">Detail_'+j+'</a></li>');
                 }
             }
 
