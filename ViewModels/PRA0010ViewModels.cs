@@ -5,6 +5,8 @@ namespace DTVSystem.ViewModels
 {
     public class PRA0010ViewModels
     {
+        public List<SelectListItem> ddlProductionResultMode { get; set; }
+        public List<SelectListItem> ddlShift { get; set; }
         public List<SelectListItem> GridHeader { get; set; }
         public List<GridBody>  GBody { get; set; }
 

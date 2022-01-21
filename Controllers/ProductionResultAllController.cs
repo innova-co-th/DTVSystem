@@ -11,6 +11,31 @@ namespace DTVSystem.Controllers
         {
             DTVSystem.ViewModels.PRA0010ViewModels model = new ViewModels.PRA0010ViewModels();
 
+            //Filter ----(+)
+
+            List<SelectListItem> ProductionResultMode = new()
+            {
+                new SelectListItem { Value = "1", Text = "Real-Time Monitoring" },
+                new SelectListItem { Value = "2", Text = "History" },
+
+            };
+            model.ddlProductionResultMode = ProductionResultMode;
+
+            List<SelectListItem> Shift = new()
+            {
+                new SelectListItem { Value = "0", Text = "All" },
+                new SelectListItem { Value = "1", Text = "A" },
+                new SelectListItem { Value = "2", Text = "B" },
+
+            };
+            model.ddlShift = Shift;
+            //Filter ----(-)
+
+
+
+
+
+
             List<SelectListItem> FactoryList = new List<SelectListItem>();
             SelectListItem item0 = new SelectListItem
             {
@@ -33,8 +58,10 @@ namespace DTVSystem.Controllers
             model.GridHeader = FactoryList;
 
             DTVSystem.ViewModels.GridBody AllLine = new ViewModels.GridBody();
-            AllLine.line =  new List<string> { "Line","R1"};
-            AllLine.Plan = new List<string> { "Plan", "100" };
+            AllLine.line =  new List<string> { "Line (Assembly)","R1","R1B","R4", "R6", "F1", "R5A", "F2"};
+            AllLine.Plan = new List<string> { "Plan", "100", "100", "100", "100", "100", "100", "100" };
+            AllLine.Actual = new List<string> { "Actual", "100", "100", "100", "100", "100", "100", "100" };
+            AllLine.Diff = new List<string> { "Diff", "0", "0", "50", "0", "0", "0", "0" };
 
             model.GBody = new List<ViewModels.GridBody>();
             model.GBody.Add( AllLine);
