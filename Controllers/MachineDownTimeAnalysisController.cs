@@ -5,7 +5,7 @@ namespace DTVSystem.Controllers
 {
     public class MachineDownTimeAnalysisController : Controller
     {
-        public IActionResult pageInitial()
+        public IActionResult MCD0010()
         {
             List<SelectListItem> ddlFactoryName = new()
             {
