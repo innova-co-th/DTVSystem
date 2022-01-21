@@ -55,31 +55,45 @@ namespace DTVSystem.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> SAM0011()
         {
             return View();
         }
 
-        public IActionResult SAM0011()
+        [HttpPost]
+        public Boolean Save1()
         {
-            SAM0010ViewModel model = new SAM0010ViewModel();
-            model.Title = "SAM0010";
+            Boolean result = false;
 
-            model.Mode = "Add";
-            model.CreateInfo = "Create Data.";
-            model.UpdateInfo = "Update Data.";
-
-            List<SelectListItem> lstDdlCustomer = new List<SelectListItem>();
-            SelectListItem item = new SelectListItem
-            {
-                Text = "Text1",
-                Value = "A001",
-            };
-            lstDdlCustomer.Add(item);
-            //model.CustomerListItem = lstDdlCustomer;
-
-            return View(model);
+            return result;
         }
+
+        [HttpPost]
+        public JsonResult AjaxMethod()
+        {
+            return Json("OK");
+        }
+
+        //public IActionResult SAM0011()
+        //{
+        //    SAM0010ViewModel model = new SAM0010ViewModel();
+        //    model.Title = "SAM0010";
+
+        //    model.Mode = "Add";
+        //    model.CreateInfo = "Create Data.";
+        //    model.UpdateInfo = "Update Data.";
+
+        //    List<SelectListItem> lstDdlCustomer = new List<SelectListItem>();
+        //    SelectListItem item = new SelectListItem
+        //    {
+        //        Text = "Text1",
+        //        Value = "A001",
+        //    };
+        //    lstDdlCustomer.Add(item);
+        //    //model.CustomerListItem = lstDdlCustomer;
+
+        //    return View(model);
+        //}
 
         public IActionResult PatternList()
         {

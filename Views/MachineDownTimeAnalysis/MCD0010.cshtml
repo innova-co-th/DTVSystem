@@ -3,6 +3,13 @@
 *@
 @{
 }
+
+@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>*@
+
 <style>
     #DDlMachineG[disabled] {
         background-color: lightgrey;
@@ -19,6 +26,10 @@
         margin-top: 10%;
         margin-left: 35%;
     }
+
+    /*.dropdown{
+        width:60%!important;
+    }*/
 </style>
 
 <div class="">
@@ -33,7 +44,7 @@
                 </div>
                 <div class="row col-md-2">
                     <label style="width:30%">Factory<span class="text-danger" id="spanreqDDlFactory">*</span></label>
-                    <select id="DDlFactory" class="form-control" style="width:60%" asp-items="@ViewBag.DDlFactory">
+                    <select id="DDlFactory" class="form-control" style="width:60%!important;" asp-items="@ViewBag.DDlFactory">
                         <option></option>
                     </select>
                 </div>
@@ -76,6 +87,8 @@
 
 <script>
     $(document).ready(function () {
+        //$('#DDlFactory').selectpicker(); multiple data-live-search="true"
+
         document.getElementById("spanreqDDlFactory").classList.remove("hide");
                 document.getElementById("spanreqDDlLine").classList.remove("hide");
                 document.getElementById("spanreqDDlProcess").classList.remove("hide");
@@ -104,60 +117,58 @@
     });
 
     function ClickClear(){
-        location.href = '@Url.Action("pageInitial", "MachineDownTimeAnalysis")'
+        location.href = '@Url.Action("MCD0010", "MachineDownTimeAnalysis")'
     }
 
     function ClickSearch(){
         counterr = 0
+        var fieldEmpty = "";
         var val_radio = document.querySelector('input[name="machineT"]:checked').value;
         if(val_radio == "1")
         {
             if($("#DDlFactory").val() == "")
             {
-                document.getElementById("DDlFactory").style.borderWidth = "3px"
-                document.getElementById("DDlFactory").style.borderColor = "red"
+                fieldEmpty = fieldEmpty + "Factory"
                 counterr++
             }
             else
             {
-                document.getElementById("DDlFactory").style.borderWidth = ""
-                document.getElementById("DDlFactory").style.borderColor = ""
             }
             if($("#DDlLine").val() == "")
             {
-                document.getElementById("DDlLine").style.borderWidth = "3px"
-                document.getElementById("DDlLine").style.borderColor = "red"
+                if(fieldEmpty != "")
+                {
+                    fieldEmpty = fieldEmpty + ", "
+                }
+                fieldEmpty = fieldEmpty + "Line"
                 counterr++
             }
             else
             {
-                document.getElementById("DDlLine").style.borderWidth = ""
-                document.getElementById("DDlLine").style.borderColor = ""
             }
             if($("#DDlProcess").val() == "")
             {
-                document.getElementById("DDlProcess").style.borderWidth = "3px"
-                document.getElementById("DDlProcess").style.borderColor = "red"
+                if(fieldEmpty != "")
+                {
+                    fieldEmpty = fieldEmpty + ", "
+                }
+                fieldEmpty = fieldEmpty + "Process"
+
                 counterr++
             }
             else
             {
-                document.getElementById("DDlProcess").style.borderWidth = ""
-                document.getElementById("DDlProcess").style.borderColor = ""
             }
         }
         else
         {
             if($("#DDlMachineG").val() == "")
             {
-                document.getElementById("DDlMachineG").style.borderWidth = "3px"
-                document.getElementById("DDlMachineG").style.borderColor = "red"
+                fieldEmpty = fieldEmpty + "Machine Group"
                 counterr++
             }
             else
             {
-                document.getElementById("DDlMachineG").style.borderWidth = ""
-                document.getElementById("DDlMachineG").style.borderColor = ""
             }
 
         }
@@ -179,6 +190,12 @@
                     document.getElementById("ErrMessage").classList.remove("center");
                 }
             });
+        }
+        else
+        {
+            fieldEmpty = fieldEmpty + " should not be empty"
+
+            ShowError('Error Message', fieldEmpty );
         }
 
     }
