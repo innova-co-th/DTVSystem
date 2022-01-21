@@ -4,11 +4,23 @@
     ViewData["Title"] = "SAM0010";
 }
 
+@*
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+</head>*@
+
 <hi>Index</hi>
 
-<p>
-    
-</p>
+<button class="btn btn-success text-white" onclick="ShowPopup('test');">ShowPopup</button>
+<button class="btn btn-success text-white" onclick="ShowError('Error title', 'show message');">Error</button>
+<button class="btn btn-success text-white" onclick="ShowInfomation('Infomation title', 'show message');">Infomation</button>
+<button class="btn btn-success text-white" onclick="ShowWarining('Warining title', 'show message');">Warining</button>
+
 
 <table class="table">
     <thead>
@@ -20,7 +32,11 @@
                 @Html.DisplayNameFor(Model => Model.CompanyModel.Company_name)
             </th>
             <th>
-                <a asp-action="Create" class="btn btn-success text-white"><i class="fas fa-random"></i>New Company</a>
+                <a asp-action="SAM0011" class="btn btn-success text-white"><i class="fas fa-random"></i>New Company</a>
+
+                
+                <a onclick="onClickButton('@Url.Action("AjaxMethod","Sample")');" class="btn btn-success text-white"><i class="fas fa-random"></i>New Company</a>
+                <button class="btn btn-success text-white" onclick="onClickButton1();">ShowPopup</button>
             </th>
         </tr>
     </thead>
@@ -39,10 +55,36 @@
     </tbody>
 </table>
 
+
+   
 <script>
     $(document).ready(function () {
         
     });
+
+    function getData() {
+        alert("getData");
+    }
+
+    function onClickButton(url) {
+        CallAjaxClick(url);
+    }
+
+    function onClickButton1() {
+        
+        ShowPopup('test');
+    }
+
+    CallAjaxClick1 = (url) => {
+        alert("CallAjaxClick : " + url);
+        $.ajax({
+            type: "POST",
+            url: url,
+            success: function (res) {
+                alert(res);
+            }
+        })
+    }
 
     function GetMessage() {
         $.get("/Home/GetMessage", function (data) {
