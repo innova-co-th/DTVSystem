@@ -122,55 +122,53 @@
 
     function ClickSearch(){
         counterr = 0
+        var fieldEmpty = "";
         var val_radio = document.querySelector('input[name="machineT"]:checked').value;
         if(val_radio == "1")
         {
             if($("#DDlFactory").val() == "")
             {
-                document.getElementById("DDlFactory").style.borderWidth = "3px"
-                document.getElementById("DDlFactory").style.borderColor = "red"
+                fieldEmpty = fieldEmpty + "Factory"
                 counterr++
             }
             else
             {
-                document.getElementById("DDlFactory").style.borderWidth = ""
-                document.getElementById("DDlFactory").style.borderColor = ""
             }
             if($("#DDlLine").val() == "")
             {
-                document.getElementById("DDlLine").style.borderWidth = "3px"
-                document.getElementById("DDlLine").style.borderColor = "red"
+                if(fieldEmpty != "")
+                {
+                    fieldEmpty = fieldEmpty + ", "
+                }
+                fieldEmpty = fieldEmpty + "Line"
                 counterr++
             }
             else
             {
-                document.getElementById("DDlLine").style.borderWidth = ""
-                document.getElementById("DDlLine").style.borderColor = ""
             }
             if($("#DDlProcess").val() == "")
             {
-                document.getElementById("DDlProcess").style.borderWidth = "3px"
-                document.getElementById("DDlProcess").style.borderColor = "red"
+                if(fieldEmpty != "")
+                {
+                    fieldEmpty = fieldEmpty + ", "
+                }
+                fieldEmpty = fieldEmpty + "Process"
+
                 counterr++
             }
             else
             {
-                document.getElementById("DDlProcess").style.borderWidth = ""
-                document.getElementById("DDlProcess").style.borderColor = ""
             }
         }
         else
         {
             if($("#DDlMachineG").val() == "")
             {
-                document.getElementById("DDlMachineG").style.borderWidth = "3px"
-                document.getElementById("DDlMachineG").style.borderColor = "red"
+                fieldEmpty = fieldEmpty + "Machine Group"
                 counterr++
             }
             else
             {
-                document.getElementById("DDlMachineG").style.borderWidth = ""
-                document.getElementById("DDlMachineG").style.borderColor = ""
             }
 
         }
@@ -192,6 +190,12 @@
                     document.getElementById("ErrMessage").classList.remove("center");
                 }
             });
+        }
+        else
+        {
+            fieldEmpty = fieldEmpty + " should not be empty"
+
+            ShowError('Error Message', fieldEmpty );
         }
 
     }

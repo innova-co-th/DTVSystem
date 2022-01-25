@@ -9,78 +9,63 @@
 }
 
 
-@*<h1>Production Result (All assembly lines)</h1>*@
+<style>
+    #DDlLine[disabled] {
+        background-color: lightgrey;
+    }
 
-<h1></h1>
+    .reqDDL{
+        border-color : red;
+    }
 
+    .center {
+        text-align: center;
+        font-size:60px;
+        color:white;
+        margin-top: 10%;
+        margin-left: 35%;
+    }
+</style>
 
-    <form method="post" enctype="multipart/form-data">    
-        
+<div class="">
+    <div class="panel" id="fieldSearch" style="background-color:lightgray;">
+        <div class="panel-body form-horizontal">
+            <div class="row">
+                <label class="col-md-3">Production Result (All assembly lines) :</label>
+                <div class="col-md-2">
+                    <label class="me-4">Mode</label>
+                     <select id="ddlProductionResultMode" class="form-control" style="width:60%" asp-items="@Model.ddlProductionResultMode">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="row col-md-2">
+                    <label class="me-4">Date</label>
+                    <label class="me-4">From</label>
+                      <input id="datepickerFrom" type="text" class="form-control" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
+                </div>
+                <div class="row col-md-2">
+                    <label class="me-4">To</label>
+                   <input id="datepickerTo" type="text" class="form-control" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
+                </div>
+                <div class="row col-md-2">
+                    <label class="me-4">Shift</label>
+                    <select id="DDlShift" class="form-control" style="width:60%" asp-items="@Model.ddlShift">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="offset-5 mt-2">               
+                <button class="btn btn-light col-md-1 me-2" onclick="ClickSearch()"><i class="fas fa-search" style="color:green;"></i> Search</button>
+                <button class="btn btn-light col-md-1" onclick="ClickClear()"><i class="fas fa-times" style="color:red;"></i> Clear</button>
+            </div>
 
-      
-        <label>Production Result (All assembly lines) : </label>
-        <label>Mode</label>
-
-       
-        <select name="products" class="form-control" asp-items="@ViewBag.ProductionResultMode"></select>
-
-         <label>Date</label>
-             
-    
-    <div id="divData"></div>  
-    <div class="form-group">
-    <label  class="control-label">From</label>
-    <input id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
-    <span  class="text-danger"></span>
+        </div>
     </div>
+</div>
 
-    <div id="divData"></div>  
-    <div class="form-group">
-    <label  class="control-label">To</label>
-    <input id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
-    <span  class="text-danger"></span>
-    </div>
+ 
 
-     <label>Shift</label>
-
-       
-        <select name="Shift" class="form-control" asp-items="@ViewBag.Shift"></select>
-@*
-      <input type="submit" asp-action="Search" value="Search" />
-      <input type="submit" asp-action="Clear" value="Clear" />*@
-
-      @*  <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary form-control" OnClick="LinkButton1_Click">
-        <i class="glyphicon glyphicon-search"></i> SEARCH</asp:LinkButton>
-        
-        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-primary form-control" OnClick="LinkButton2_Click">
-        <i class="glyphicon glyphicon-remove"></i> CLEAR</asp:LinkButton>*@
-
-        <button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-search"></span> Search 
-        </button>
-
-       
-        <button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-remove"></span> Clear
-        </button>
-    
-        <div id="UserList"></div>
-
-   @*   <table cellpadding="0" cellspacing="0">
-        <tr>
-            <th>Factory</th>
-            <th>Factory1</th>           
-        </tr>
-        @foreach (DataRow row in Model.Tables[0].Rows)
-        {
-            <tr>
-                <td>@row["Subject"]</td>
-                <td>@row["Line"]</td>                
-            </tr>
-        }
-    </table>*@
-
-    <table class="table">
+    <table style="background-color:white; ">
     <thead>
         <tr>
          @foreach (var item in Model.GridHeader)
@@ -94,24 +79,206 @@
     <tbody>
         
             
-        @foreach (var item in Model.GBody)
+     @*   @foreach (var item in Model.GBody)
         {
-            <tr>
-                    <th>
-                    @Html.DisplayFor(modelItem => item.line)
+            <tr>                  
+                <th>                    
+                   @Html.DisplayFor(modelItem => item.line)                                
                 </th>
 
             </tr>
+             
         }
+      *@
+       
+          <tr>   
+                    <th>     
+                      
+                            @Html.DisplayFor(modelItem => Model.GBody.HeadColumn[0])                  
+                       
+                    </th> 
+                @foreach (var item in Model.GBody.line)
+                {
+                    <th>     
+                      
+                            @Html.DisplayFor(modelItem => item)                        
+                      
+                    </th> 
+                }
+          </tr>
+          <tr>   
+               <th>     
+                      
+                            @Html.DisplayFor(modelItem => Model.GBody.HeadColumn[1])                  
+                       
+                    </th> 
+                @foreach (var item in Model.GBody.Plan)
+                {
+
+                <th width="100">     
+                   
+                        @Html.DisplayFor(modelItem => item)                        
+                   
+                    </th> 
+                }
+          </tr>
+          <tr>   
+               <th>     
+                       
+                            @Html.DisplayFor(modelItem => Model.GBody.HeadColumn[2])                  
+                      
+                    </th> 
+                @foreach (var item in Model.GBody.Actual)
+                {
+                    <th>     
+                       
+                            @Html.DisplayFor(modelItem => item)                        
+                      
+                    </th> 
+                }
+          </tr>
+           <tr>   
+                <th>     
+                      
+                            @Html.DisplayFor(modelItem => Model.GBody.HeadColumn[3])                  
+                     
+                    </th> 
+                @foreach (var item in Model.GBody.Diff)
+                {                                       
+                   
+                    <th> 
+                     
+                        @Html.DisplayFor(modelItem => item)
+               
+
+                    </th> 
+                }
+          </tr>
+            <tr>   
+                 <th>     
+                       
+                            @Html.DisplayFor(modelItem => Model.GBody.HeadColumn[4])                  
+                       
+                    </th> 
+                @foreach (var item in Model.GBody.ADiff)
+                {
+                    <th>     
+                       
+                            @Html.DisplayFor(modelItem => item)                        
+                       
+                    </th> 
+                }
+          </tr>
+           <tr>   
+                <th>     
+                      
+                            @Html.DisplayFor(modelItem => Model.GBody.HeadColumn[5])                  
+                       
+                    </th> 
+                @foreach (var item in Model.GBody.LineOut)
+                {
+                    <th>     
+                       @if(item > 0)
+                    {
+                        <span style="color:red;">@Html.DisplayFor(modelItem => item)</span>
+                    }
+                    else
+                    {
+                          @Html.DisplayFor(modelItem => item)                
+                    }
+                          
+                       
+                    </th> 
+                }
+          </tr>
+           <tr>   
+                <th>     
+                      
+                            @Html.DisplayFor(modelItem => Model.GBody.HeadColumn[6])                  
+                       
+                    </th> 
+                @foreach (var item in Model.GBody.LineIn)
+                {
+                    <th>     
+                       
+                            @Html.DisplayFor(modelItem => item)                        
+                      
+                    </th> 
+                }
+          </tr>
+           <tr>   
+                <th>     
+                      
+                            @Html.DisplayFor(modelItem => Model.GBody.HeadColumn[7])                  
+                       
+                    </th> 
+                @foreach (var item in Model.GBody.Throghput)
+                {
+                    <th>     
+                        
+                            @Html.DisplayFor(modelItem => item)                        
+                       
+                    </th> 
+                }
+          </tr>
+           <tr>   
+                <th>     
+                      
+                            @Html.DisplayFor(modelItem => Model.GBody.HeadColumn[8])                  
+                       
+                    </th> 
+                @foreach (var item in Model.GBody.Progress)
+                {
+                    <th>     
+                           @if(item <= 50)
+                    {
+                         <span style="color:red;">@Html.DisplayFor(modelItem => item)</span><span style="color:red;">%</span>
+                    }
+                    else
+                    {
+                         @Html.DisplayFor(modelItem => item)     
+                         <span>%</span>
+                    }
+                                      
+                       
+                    </th> 
+                }
+          </tr>
+       @*   <tr>                  
+                <th>                    
+                   @Html.DisplayFor(modelItem => Model.GBody[0].Plan[0])                                
+                </th>
+                  <th>                    
+                   @Html.DisplayFor(modelItem => Model.GBody[0].Plan[1])                                
+                </th>
+                  <th>                    
+                   @Html.DisplayFor(modelItem => Model.GBody[0].Plan[2])                                
+                </th>
+                  <th>                    
+                   @Html.DisplayFor(modelItem => Model.GBody[0].Plan[3])                                
+                </th>
+                  <th>                    
+                   @Html.DisplayFor(modelItem => Model.GBody[0].Plan[4])                                
+                </th>
+                  <th>                    
+                   @Html.DisplayFor(modelItem => Model.GBody[0].Plan[5])                                
+                </th>
+                  <th>                    
+                   @Html.DisplayFor(modelItem => Model.GBody[0].Plan[6])                                
+                </th>
+                  <th>                    
+                   @Html.DisplayFor(modelItem => Model.GBody[0].Plan[7])                                
+                </th>
+          </tr>*@
+           
         
     </tbody>
 </table>
 
 
- }
    
-     
-    </form>  
+  @*   
+    </form>  *@
 
     @section Scripts
 {
@@ -122,6 +289,16 @@
         $(function () {
             $("#datepicker").datepicker();
         });
+
+        function checkInp(clvalue)
+{
+  
+  if (isNaN(clvalue)) 
+  {
+    alert("Must input numbers");
+    return false;
+  }
+}
     </script>
 
 
