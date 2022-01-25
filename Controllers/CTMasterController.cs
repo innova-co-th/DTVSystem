@@ -7,6 +7,7 @@ namespace DTVSystem.Controllers
     {
         public IActionResult MAS0010()
         {
+            //Filter
             List<SelectListItem> ddlFactoryName = new()
             {
                 new SelectListItem { Value = "1", Text = "Factory1" },

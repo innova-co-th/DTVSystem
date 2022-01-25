@@ -4,11 +4,6 @@
 @{
 }
 
-@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>*@
 
 <style>
     #DDlMachineG[disabled] {
@@ -27,11 +22,9 @@
         margin-left: 35%;
     }
 
-    /*.dropdown{
-        width:60%!important;
-    }*/
 </style>
 
+@*search*@
 <div class="">
     <div class="panel" id="fieldSearch" style="background-color:lightgray;">
         <div class="panel-body form-horizontal">
@@ -81,14 +74,14 @@
         </div>
     </div>
 </div>
+@*display*@
 <div>
     <label class="center" id="ErrMessage" ></label>
 </div>
 
 <script>
     $(document).ready(function () {
-        //$('#DDlFactory').selectpicker(); multiple data-live-search="true"
-
+        //set display [*]
         document.getElementById("spanreqDDlFactory").classList.remove("hide");
                 document.getElementById("spanreqDDlLine").classList.remove("hide");
                 document.getElementById("spanreqDDlProcess").classList.remove("hide");
@@ -96,22 +89,22 @@
                 document.getElementById("DDlMachineG").disabled = true;
 
         $('input[type=radio][name=machineT]').change(function() {
-            if (this.value == "1")
+            if (this.value == "1") // choose Machine
             {
-                document.getElementById("spanreqDDlFactory").classList.remove("hide");
-                document.getElementById("spanreqDDlLine").classList.remove("hide");
-                document.getElementById("spanreqDDlProcess").classList.remove("hide");
-                document.getElementById("spanreqDDlMachineG").classList.add("hide");
-                document.getElementById("DDlMachineG").disabled = true;
+                document.getElementById("spanreqDDlFactory").classList.remove("hide"); //show
+                document.getElementById("spanreqDDlLine").classList.remove("hide");    //show
+                document.getElementById("spanreqDDlProcess").classList.remove("hide"); //show
+                document.getElementById("spanreqDDlMachineG").classList.add("hide");   //hide
+                document.getElementById("DDlMachineG").disabled = true;                //disable
 
             }
-            else if (this.value == "2")
+            else if (this.value == "2") // choose Machine group
             {
-                document.getElementById("spanreqDDlFactory").classList.add("hide");
-                document.getElementById("spanreqDDlLine").classList.add("hide");
-                document.getElementById("spanreqDDlProcess").classList.add("hide");
-                document.getElementById("spanreqDDlMachineG").classList.remove("hide");
-                document.getElementById("DDlMachineG").disabled = false;
+                document.getElementById("spanreqDDlFactory").classList.add("hide");     //hide
+                document.getElementById("spanreqDDlLine").classList.add("hide");        //hide
+                document.getElementById("spanreqDDlProcess").classList.add("hide");     //hide
+                document.getElementById("spanreqDDlMachineG").classList.remove("hide"); //show
+                document.getElementById("DDlMachineG").disabled = false;                //enable
             }
         });
     });
@@ -124,7 +117,8 @@
         counterr = 0
         var fieldEmpty = "";
         var val_radio = document.querySelector('input[name="machineT"]:checked').value;
-        if(val_radio == "1")
+        //check data require
+        if(val_radio == "1") // choose Machine
         {
             if($("#DDlFactory").val() == "")
             {
@@ -160,7 +154,7 @@
             {
             }
         }
-        else
+        else // choose Machine group
         {
             if($("#DDlMachineG").val() == "")
             {
@@ -173,7 +167,7 @@
 
         }
 
-        if(counterr == 0)
+        if(counterr == 0) // don't have error
         {
             $.ajax({
                 type: "POST",
@@ -191,7 +185,7 @@
                 }
             });
         }
-        else
+        else // have error
         {
             fieldEmpty = fieldEmpty + " should not be empty"
 

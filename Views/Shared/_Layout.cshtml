@@ -17,13 +17,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
+     @*script navbar menu*@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
-
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <body style="background-color:black;">
     <header>
+        @*date, humidity, temperature*@
         <nav class="navbar navbar-expand-lg navbar-dark bg-white">
             <div class="col-6 text-start">
                 <span>
@@ -39,7 +41,7 @@
                 <span class="" id='date-time'></span>
             </span>
         </nav>
-
+        @* navbar menu multi level *@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand mr-5 menuHome" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home" style="font-size:30px;color:red"></i></a>
@@ -105,7 +107,6 @@
 
         </nav>
     </header>
-    @*<div class="container" >*@
     <div class="">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -137,7 +138,7 @@
                     <h3 class="modal-title"></h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" >
+                <div class="modal-body">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary col-3 me-2" data-bs-dismiss="modal" onclick="ClickConfirm()"><i class="fas fa-check"></i>Confirm</button>
@@ -186,47 +187,55 @@
             <a asp-area="" asp-controller="Sample" asp-action="SAM0001">SAM0001</a>
             <a asp-area="" asp-controller="Sample" asp-action="SAM0010">SAM0010</a>
         </div>
+
     </footer>
 
 </body>
 </html>
 
 <script>
-    $(document).ready(function () {
-            for(var i = 0; i<4;i++)
-            {
-                $('#DDLStaff').append('<li>'+
-                                    '<a class="dropdown-item AddColor" href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
-                                    '<ul class="dropdown-submenu AddBgColor dropdown-menu" id="detailFactoryStaff'+i+'">'+
-                                    '</ul>'+
-                                    '</li>');
+     $(document).ready(function () {
+             for(var i = 0; i<4;i++)
+             {
+                 // genarate multi level
+                 $('#DDLStaff').append('<li>'+
+                                     '<a class="dropdown-item AddColor" href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
+                                     '<ul class="dropdown-submenu AddBgColor dropdown-menu" id="detailFactoryStaff'+i+'">'+
+                                     '</ul>'+
+                                     '</li>');
 
-                $('#DDLMachine').append('<li>'+
-                                    '<a class="dropdown-item AddColor" href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
-                                    '<ul class="dropdown-submenu AddBgColor dropdown-menu" id="detailFactoryMachine'+i+'">'+
-                                    '</ul>'+
-                                    '</li>');
-            }
-            for(var n = 0; n<4;n++)
-            {
-                var idFacStaff = "detailFactoryStaff"+n
-                var idFacMac = "detailFactoryMachine"+n
-                for(var j = 0; j < 6 ; j++)
-                {
-                    $('#'+idFacStaff).append('<li><a class="dropdown-item AddColor"  href="/Home/Privacy">Detail_'+j+'</a></li>');
-                    $('#'+idFacMac).append('<li><a class="dropdown-item AddColor" href="/MachineDownTimeAnalysis/MCD0010">Detail_'+j+'</a></li>');
-                }
-            }
+                 $('#DDLMachine').append('<li>'+
+                                     '<a class="dropdown-item AddColor" href="#">Factory'+i+'<span> &rtrif; </span> </a>'+
+                                     '<ul class="dropdown-submenu AddBgColor dropdown-menu" id="detailFactoryMachine'+i+'">'+
+                                     '</ul>'+
+                                     '</li>');
+             }
+             for(var n = 0; n<4;n++)
+             {
+                 var idFacStaff = "detailFactoryStaff"+n
+                 var idFacMac = "detailFactoryMachine"+n
+                 for(var j = 0; j < 6 ; j++)
+                 {
+                     // genarate multi level
+                     $('#'+idFacStaff).append('<li><a class="dropdown-item AddColor"  href="/Home/Privacy">Detail_'+j+'</a></li>');
+                     $('#'+idFacMac).append('<li><a class="dropdown-item AddColor" href="/MachineDownTimeAnalysis/MCD0010">Detail_'+j+'</a></li>');
+                 }
+             }
 
 
-    });
-    var timeDisplay = document.getElementById("date-time");
 
-    function refreshTime() {
-        var dateString = new Date().toLocaleString("th-TH");
-        timeDisplay.innerHTML = dateString;
+     });
 
-    }
+     //get date, time
+     var timeDisplay = document.getElementById("date-time");
 
-    setInterval(refreshTime, 1000);
+     function refreshTime() {
+         var dateString = new Date().toLocaleString("th-TH");
+         timeDisplay.innerHTML = dateString;
+
+     }
+
+     setInterval(refreshTime, 1000);
+
+  
 </script>

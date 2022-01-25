@@ -9,37 +9,28 @@
 <div class="">
     <div class="panel" id="fieldSearch" style="background-color:lightgray;">
         <div class="panel-body form-horizontal row">
+            @*import*@
             <div class="col-7">
-                @*<form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data">*@
-                @*<label for="files" class="btn">Select Image</label>
-                    <input id="files" style="visibility:hidden;" type="file">*@
-
                 <div class="row">
                     <label class="col-2 ms-2">Import C/T Master</label>
-                    <input class="col-3" type="text" name="postedFile" id="showfilename" readonly/>
+                    <input class="col-3" type="text" name="postedFile" id="showfilename" readonly />
                     <button class="btn btn-light col-2 me-2" onclick="document.getElementById('getFile').click()"><i class="fas fa-folder-open me-1" style="color:#F2E135;"></i>Browse</button>
                     <input type='file' id="getFile" style="display:none">
-
-                    @*<input class="col-2" type="file" name="postedFile" id="filename" />*@
-
-
                     <button class="btn btn-light col-2" type="submit" onclick="ShowpageInfomation('Confirm Message', 'Are you sure that you want to continue?');"><i class="fas fa-file-import me-1" style="color:darkblue;"></i>Import</button>
                 </div>
                 <div class="row mt-1">
                     <div class="col-7">
-                        <button class="btn btn-light col-4 ms-2 me-2 align-content-start"><i class="fas fa-search" style="color:green;"></i> Download Template</button>
+                        <button class="btn btn-light col-4 ms-2 me-2 align-content-start"><i class="fas fa-file-export" style="color:darkblue;"></i> Download Template</button>
                     </div>
                     <div class="col-5">
                         <button class="btn btn-light col-5 me-2 "><i class="fas fa-search" style="color:green;"></i> Reject Result</button>
                     </div>
-
                 </div>
-
-                @*</form>*@
             </div>
+
+            @*export*@
             <div class="col-5">
                 <form asp-controller="Home" asp-action="Index">
-                    @* method="post" enctype="multipart/form-data"*@
                     <div class="col-12">
                         <div class="row col-md-6">
                             <label style="width:30%">Factory<span class="text-danger" id="spanreqDDlFactory">*</span></label>
@@ -56,12 +47,11 @@
                     </div>
                     <button class="btn btn-light offset-2 col-md-3 me-3"><i class="fas fa-file-export" style="color:darkblue;"></i> Export</button>
                 </form>
-                
-                    <div class="offset-2">
-                        
-                        <button class="btn btn-light col-md-3 me-3" onclick="ClickSearch()"><i class="fas fa-search" style="color:green;"></i> Search</button>
-                        <button class="btn btn-light col-md-3" onclick="ClickClear()"><i class="fas fa-times" style="color:red;"></i> Clear</button>
-                    </div>
+
+                <div class="offset-2">
+                    <button class="btn btn-light col-md-3 me-3" onclick="ClickSearch()"><i class="fas fa-search" style="color:green;"></i> Search</button>
+                    <button class="btn btn-light col-md-3" onclick="ClickClear()"><i class="fas fa-times" style="color:red;"></i> Clear</button>
+                </div>
             </div>
         </div>
 
@@ -69,27 +59,28 @@
 </div>
 
 
-
+@*modal confirm*@
 <div class="modal" tabindex="-1" id="form-modal-Infomation">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <i class="fas fa-exclamation-triangle me-3" style="color:#F2E135;font-size:30px;"></i>
-                    <h3 class="modal-title"></h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" >
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary col-3 me-2" data-bs-dismiss="modal" onclick="ClickConfirm()"><i class="fas fa-check"></i>Confirm</button>
-                    <button type="button" class="btn btn-danger col-3" data-bs-dismiss="modal"><i class="fas fa-times"></i>Cancel</button>
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle me-3" style="color:#F2E135;font-size:30px;"></i>
+                <h3 class="modal-title"></h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary col-3 me-2" data-bs-dismiss="modal" onclick="ClickConfirm()"><i class="fas fa-check"></i>Confirm</button>
+                <button type="button" class="btn btn-danger col-3" data-bs-dismiss="modal"><i class="fas fa-times"></i>Cancel</button>
             </div>
         </div>
     </div>
+</div>
 
 <script>
     $(document).ready(function () {
+       //get file name
        $('#getFile').change(function () {
            var file = $('#getFile')[0].files[0].name;
            $("#showfilename").val(file)
@@ -105,13 +96,15 @@
     function ClickConfirm()
     {
         var sFileName = $('#getFile')[0].files[0].name;
-        if(sFileName == "" ||sFileName == null)
-        {
-            var message = "File " + sFileName + " is not expected file type CSV"
-            ShowError('Error Message', message);
-            return false;
-        }
-        
+        //check have file
+        //if(sFileName == "" ||sFileName == null)
+        //{
+        //    var message = "File " + sFileName + " is not expected file type CSV"
+        //    ShowError('Error Message', message);
+        //    return false;
+        //}
+
+        //check type file
         if (sFileName.length > 0) {
             var blnValid = false;
             for (var j = 0; j < _validFileExtensions.length; j++) {
