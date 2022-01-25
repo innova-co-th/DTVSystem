@@ -179,7 +179,8 @@ namespace DTVSystem.Controllers
 
             try
             {
-                conn.ConnectionString = "Server=192.168.10.89;Port=5432;User Id=dtvuser;Password=abc123$1;Database=dtvdb";
+                //conn.ConnectionString = "Server=192.168.10.89;Port=5432;User Id=dtvuser;Password=abc123$1;Database=dtvdb";
+                conn.ConnectionString = "Server=::1;Port=5433;User Id=dtvuser;Password=abc123$1;Database=dtvdb";
                 //command
                 string sql = "SELECT code, name FROM test ORDER BY code";
                 conn.Open();
